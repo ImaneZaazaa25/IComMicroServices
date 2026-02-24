@@ -1,11 +1,11 @@
 package com.microservice.orderservice.model;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 @Data
@@ -17,7 +17,11 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     @OneToMany(fetch = FetchType.LAZY ,cascade = CascadeType.ALL ,mappedBy = "order")
     private List<OrderItem> orderItemList;
+    private Long client_id;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+
 }

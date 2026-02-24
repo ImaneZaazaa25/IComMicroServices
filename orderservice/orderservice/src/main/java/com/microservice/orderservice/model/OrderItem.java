@@ -1,5 +1,6 @@
 package com.microservice.orderservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,5 +24,6 @@ public class OrderItem {
     private String productId;
     @ManyToOne
     @JoinColumn(name="order_id",nullable = false)
+    @JsonIgnore
     private Order order;
 }
