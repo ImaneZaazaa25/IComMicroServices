@@ -14,11 +14,12 @@ import java.util.List;
 public class OrderController {
     private final OrderService orderService;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createOrder(@RequestBody Order order){
-        orderService.createOrder(order);
+    @PostMapping("/orders")
+    public Order createOrder(@RequestBody CreateOrderRequest req) {
+        return orderService.createOrder(req.order(), req.nom(), req.prenom());
     }
+
+    public record CreateOrderRequest(String nom, String prenom, Order order) {}
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Order> getAllOrders(){
